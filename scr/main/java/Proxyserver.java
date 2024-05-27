@@ -58,8 +58,6 @@ public class ProxyServer {
             String dbUser = config.getProperty("MySQL.user");
             String dbPassword = config.getProperty("MySQL.password");
             dbConnection = DriverManager.getConnection(dbUrl, dbUser, dbPassword);
-
-            // Load whitelist and blacklist from config
             String[] whitelistIPs = config.getProperty("Whitelist.ips").split(",");
             whitelist = new HashSet<>(Set.of(whitelistIPs));
 
