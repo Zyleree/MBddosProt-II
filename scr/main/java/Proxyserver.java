@@ -80,7 +80,6 @@ public class ProxyServer {
                 socket.receive(packet);
                 String ip = packet.getAddress().getHostAddress();
 
-                // Check whitelist and blacklist
                 if (whitelist.contains(ip)) {
                     forwardTraffic(packet, mainServerIP, mainServerPort);
                     continue;
@@ -103,14 +102,13 @@ public class ProxyServer {
     }
 
     private int detectDDoS(String ip) {
-        // Implement DDoS detection logic
         int requestCount = getRequestCount(ip);
         if (requestCount > blockThreshold) {
-            return 3; // High severity
+            return 3;
         } else if (requestCount > rateLimit) {
-            return 2; // Medium severity
+            return 2; 
         } else {
-            return 1; // Low severity
+            return 1; 
         }
     }
 
@@ -120,7 +118,6 @@ public class ProxyServer {
                 blacklist.add(ip);
                 return "Blocked IP";
             case 2:
-                // Implement rate limiting
                 return "Rate limited";
             default:
                 return "No action";
@@ -199,11 +196,9 @@ public class ProxyServer {
     }
 
     private int getRequestCount(String ip) {
-        // Implement logic to get request count for the given IP
-        return 100; // Placeholder
+        return 100; 
     }
 
-    // Console commands
     public void addToWhitelist(String ip) {
         whitelist.add(ip);
         logger.log(Level.INFO, "Added IP " + ip + " to whitelist");
